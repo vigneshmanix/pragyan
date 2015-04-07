@@ -48,7 +48,7 @@ class Services_Yadis_PlainHTTPFetcher extends Services_Yadis_HTTPFetcher {
     {
         if (!$this->allowedURL($url)) {
             trigger_error("Bad URL scheme in url: " . $url,
-                          E_USER_WARNING);
+                    E_USER_WARNING);
             return null;
         }
 
@@ -72,9 +72,9 @@ class Services_Yadis_PlainHTTPFetcher extends Services_Yadis_HTTPFetcher {
                     $parts['port'] = 443;
                 } else {
                     trigger_error("fetcher post method doesn't support " .
-                                  " scheme '" . $parts['scheme'] .
-                                  "', no default port available",
-                                  E_USER_WARNING);
+                            " scheme '" . $parts['scheme'] .
+                            "', no default port available",
+                            E_USER_WARNING);
                     return null;
                 }
             }
@@ -88,16 +88,16 @@ class Services_Yadis_PlainHTTPFetcher extends Services_Yadis_HTTPFetcher {
             $user_agent = "PHP Yadis Library Fetcher";
 
             $headers = array(
-                             "GET ".$parts['path'].
-                             (array_key_exists('query', $parts) ?
-                              "?".$parts['query'] : "").
-                                  " HTTP/1.1",
-                             "User-Agent: $user_agent",
-                             "Host: ".$parts['host'].(!$default_port ?
-                                                      ":".$parts['port'] : ""),
-                             "Port: ".$parts['port'],
-                             "Cache-Control: no-cache",
-                             "Connection: close");
+                    "GET ".$parts['path'].
+                    (array_key_exists('query', $parts) ?
+                     "?".$parts['query'] : "").
+                    " HTTP/1.1",
+                    "User-Agent: $user_agent",
+                    "Host: ".$parts['host'].(!$default_port ?
+                        ":".$parts['port'] : ""),
+                    "Port: ".$parts['port'],
+                    "Cache-Control: no-cache",
+                    "Connection: close");
 
             if ($extra_headers) {
                 foreach ($extra_headers as $h) {
@@ -109,7 +109,7 @@ class Services_Yadis_PlainHTTPFetcher extends Services_Yadis_HTTPFetcher {
             $errstr = '';
 
             $sock = fsockopen($host, $parts['port'], $errno, $errstr,
-                              $this->timeout);
+                    $this->timeout);
             if ($sock === false) {
                 return false;
             }
@@ -153,7 +153,7 @@ class Services_Yadis_PlainHTTPFetcher extends Services_Yadis_HTTPFetcher {
         }
 
         return new Services_Yadis_HTTPResponse($url, $code,
-                                               $new_headers, $body);
+                $new_headers, $body);
     }
 }
 

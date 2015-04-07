@@ -1,234 +1,234 @@
 <?php 
 include "auth.php";
 if ($_index_numbers=="") {
-	$_index_numbers=0;
+    $_index_numbers=0;
 } 
 
 if ($_index_xls=="") {
-	$_index_xls=0;
+    $_index_xls=0;
 } 
 
 if ($_index_ppt=="") {
-	$_index_ppt=0;
+    $_index_ppt=0;
 }
 
 if ($_index_pdf=="") {
-	$_index_pdf=0;
+    $_index_pdf=0;
 } 
 
 if ($_index_doc=="") {
-	$_index_doc=0;
+    $_index_doc=0;
 } 
 
 if ($_min_delay=="") {
-	$_min_delay=0;
+    $_min_delay=0;
 } 
 
 if ($_index_host=="") {
-	$_index_host=0;
+    $_index_host=0;
 }
 if ($_keep_log=="") {
-	$_keep_log=0;
+    $_keep_log=0;
 }
 if ($_show_meta_description=="") {
-	$_show_meta_description=0;
+    $_show_meta_description=0;
 }
 
 if ($_show_categories=="") {
-	$_show_categories=0;
+    $_show_categories=0;
 }
 
 if ($_show_query_scores=="") {
-	$_show_query_scores=0;
+    $_show_query_scores=0;
 }
 
 if ($_email_log=="") {
-	$_email_log=0;
+    $_email_log=0;
 }
 
 if ($_print_results=="") {
-	$_print_results=0;
+    $_print_results=0;
 }
 
 
 if ($_index_meta_keywords=="") {
-	$_index_meta_keywords=0;
+    $_index_meta_keywords=0;
 }
 
 if ($_index_host=="") {
-	$_index_host=0;
+    $_index_host=0;
 }
 
 if ($_advanced_search=="") {
-	$_advanced_search=0;
+    $_advanced_search=0;
 }
 
 if ($_merge_site_results == "") {
-	$_merge_site_results = 0;
+    $_merge_site_results = 0;
 }
 
 if ($_did_you_mean_enabled == "") {
-	$_did_you_mean_enabled = 0;
+    $_did_you_mean_enabled = 0;
 }
 
 if ($_stem_words == "") {
-	$_stem_words = 0;
+    $_stem_words = 0;
 }
 
 if ($_strip_sessids == "") {
-	$_strip_sessids = 0;
+    $_strip_sessids = 0;
 }
 
 if ($_suggest_enabled == "") {
-	$_suggest_enabled = 0;
+    $_suggest_enabled = 0;
 }
 
 if ($_suggest_history == "") {
-	$_suggest_history  = 0;
+    $_suggest_history  = 0;
 }
 
 if ($_suggest_phrases == "") {
-	$_suggest_phrases = 0;
+    $_suggest_phrases = 0;
 }
 
 if ($_suggest_keywords == "") {
-	$_suggest_keywords = 0;
+    $_suggest_keywords = 0;
 }
 
 if ($_suggest_rows == "") {
- $_suggest_rows = 0;
+    $_suggest_rows = 0;
 }
 
 
 
 if (isset($Submit)) {
-	if (!is_writable("../settings/conf.php")) {
-		print "Configuration file is not writable, chmod 666 conf.php under *nix systems";
-	} else {
-		$fhandle=fopen("../settings/conf.php","wb");
-		fwrite($fhandle,"<?php \n");
-		fwrite($fhandle,"/***********************\n Sphider configuration file\n***********************/");
-		fwrite($fhandle,"\n\n\n/*********************** \nGeneral settings \n***********************/");
-		fwrite($fhandle, "\n\n// Sphider version \n");
-		fwrite($fhandle,"$"."version_nr			= '".$_version_nr. "';");
-		fwrite($fhandle, "\n\n//Language of the search page \n");
-		fwrite($fhandle,"$"."language			= '".$_language. "';");
-		fwrite($fhandle, "\n\n// Template name/directory in templates dir\n");
-		fwrite($fhandle,"$"."template	= '".$_template. "';");
-		fwrite($fhandle, "\n\n//Administrators email address (logs can be sent there)	\n");
-		fwrite($fhandle,"$"."admin_email		= '".$_admin_email. "';");
-		fwrite($fhandle, "\n\n// Print spidering results to standard out\n");
-		fwrite($fhandle,"$"."print_results		= ".$_print_results. ";");
-		fwrite($fhandle, "\n\n// Temporary directory, this should be readable and writable\n");
-		fwrite($fhandle,"$"."tmp_dir	= '".$_tmp_dir. "';");
+    if (!is_writable("../settings/conf.php")) {
+        print "Configuration file is not writable, chmod 666 conf.php under *nix systems";
+    } else {
+        $fhandle=fopen("../settings/conf.php","wb");
+        fwrite($fhandle,"<?php \n");
+        fwrite($fhandle,"/***********************\n Sphider configuration file\n***********************/");
+        fwrite($fhandle,"\n\n\n/*********************** \nGeneral settings \n***********************/");
+        fwrite($fhandle, "\n\n// Sphider version \n");
+        fwrite($fhandle,"$"."version_nr			= '".$_version_nr. "';");
+        fwrite($fhandle, "\n\n//Language of the search page \n");
+        fwrite($fhandle,"$"."language			= '".$_language. "';");
+        fwrite($fhandle, "\n\n// Template name/directory in templates dir\n");
+        fwrite($fhandle,"$"."template	= '".$_template. "';");
+        fwrite($fhandle, "\n\n//Administrators email address (logs can be sent there)	\n");
+        fwrite($fhandle,"$"."admin_email		= '".$_admin_email. "';");
+        fwrite($fhandle, "\n\n// Print spidering results to standard out\n");
+        fwrite($fhandle,"$"."print_results		= ".$_print_results. ";");
+        fwrite($fhandle, "\n\n// Temporary directory, this should be readable and writable\n");
+        fwrite($fhandle,"$"."tmp_dir	= '".$_tmp_dir. "';");
 
-		fwrite($fhandle,"\n\n\n/*********************** \nLogging settings \n***********************/");
-		fwrite($fhandle, "\n\n// Should log files be kept\n");
-		fwrite($fhandle,"$"."keep_log			= ".$_keep_log. ";");
-		fwrite($fhandle, "\n\n//Log directory, this should be readable and writable\n");
-		fwrite($fhandle,"$"."log_dir	= '".$_log_dir. "';");
-		fwrite($fhandle, "\n\n// Log format\n");
-		fwrite($fhandle,"$"."log_format			= '".$_log_format. "';");
-		fwrite($fhandle, "\n\n//  Send log file to email \n");
-		fwrite($fhandle,"$"."email_log			= ".$_email_log. ";");
+        fwrite($fhandle,"\n\n\n/*********************** \nLogging settings \n***********************/");
+        fwrite($fhandle, "\n\n// Should log files be kept\n");
+        fwrite($fhandle,"$"."keep_log			= ".$_keep_log. ";");
+        fwrite($fhandle, "\n\n//Log directory, this should be readable and writable\n");
+        fwrite($fhandle,"$"."log_dir	= '".$_log_dir. "';");
+        fwrite($fhandle, "\n\n// Log format\n");
+        fwrite($fhandle,"$"."log_format			= '".$_log_format. "';");
+        fwrite($fhandle, "\n\n//  Send log file to email \n");
+        fwrite($fhandle,"$"."email_log			= ".$_email_log. ";");
 
-		fwrite($fhandle,"\n\n\n/*********************** \nSpider settings \n***********************/");
-		fwrite($fhandle, "\n\n// Min words per page required for indexing \n");
-		fwrite($fhandle,"$"."min_words_per_page = ".$_min_words_per_page. ";");
-		fwrite($fhandle, "\n\n// Words shorter than this will not be indexed\n");
-		fwrite($fhandle,"$"."min_word_length	= ".$_min_word_length. ";");
-		fwrite($fhandle, "\n\n// Keyword weight depending on the number of times it appears in a page is capped at this value\n");
-		fwrite($fhandle,"$"."word_upper_bound	= ".$_word_upper_bound. ";");
-		fwrite($fhandle, "\n\n// Index numbers as well\n");
-		fwrite($fhandle,"$"."index_numbers		= ".$_index_numbers. ";");
-		fwrite($fhandle,"\n\n// if this value is set to 1, word in domain name and url path are also indexed,// so that for example the index of www.php.net returns a positive answer to query 'php' even 	// if the word is not included in the page itself.\n");
-		fwrite($fhandle,"$"."index_host		 = ".$_index_host.";\n");
-		fwrite($fhandle, "\n\n// Wether to index keywords in a meta tag \n");
-		fwrite($fhandle,"$"."index_meta_keywords = ".$_index_meta_keywords. ";");		
-		fwrite($fhandle, "\n\n// Index pdf files\n");
-		fwrite($fhandle,"$"."index_pdf	= ".$_index_pdf. ";");
-		fwrite($fhandle, "\n\n// Index doc files\n");
-		fwrite($fhandle,"$"."index_doc	= ".$_index_doc. ";");
-		fwrite($fhandle, "\n\n// Index xls files\n");
-		fwrite($fhandle,"$"."index_xls	= ".$_index_xls. ";");
-		fwrite($fhandle, "\n\n// Index ppt files\n");
-		fwrite($fhandle,"$"."index_ppt	= ".$_index_ppt. ";");
-		fwrite($fhandle, "\n\n//executable path to pdf converter\n");
-		fwrite($fhandle,"$"."pdftotext_path	= '".$_pdftotext_path	. "';");
-		fwrite($fhandle, "\n\n//executable path to doc converter\n");
-		fwrite($fhandle,"$"."catdoc_path	= '".$_catdoc_path. "';");
-		fwrite($fhandle, "\n\n//executable path to xls converter\n");
-		fwrite($fhandle,"$"."xls2csv_path	= '".$_xls2csv_path	. "';");
-		fwrite($fhandle, "\n\n//executable path to ppt converter\n");
-		fwrite($fhandle,"$"."catppt_path	= '".$_catppt_path. "';");
-		fwrite($fhandle, "\n\n// User agent string \n");
-		fwrite($fhandle,"$"."user_agent			 = '".$_user_agent. "';");
-		fwrite($fhandle, "\n\n// Minimal delay between page downloads \n");
-		fwrite($fhandle,"$"."min_delay			= ".$_min_delay. ";");
-		fwrite($fhandle, "\n\n// Use word stemming (e.g. find sites containing runs and running when searching for run) \n");
-		fwrite($fhandle,"$"."stem_words			= ".$_stem_words. ";");
-		fwrite($fhandle, "\n\n// Strip session ids (PHPSESSID, JSESSIONID, ASPSESSIONID, sid) \n");
-		fwrite($fhandle,"$"."strip_sessids			= ".$_strip_sessids. ";");
+        fwrite($fhandle,"\n\n\n/*********************** \nSpider settings \n***********************/");
+        fwrite($fhandle, "\n\n// Min words per page required for indexing \n");
+        fwrite($fhandle,"$"."min_words_per_page = ".$_min_words_per_page. ";");
+        fwrite($fhandle, "\n\n// Words shorter than this will not be indexed\n");
+        fwrite($fhandle,"$"."min_word_length	= ".$_min_word_length. ";");
+        fwrite($fhandle, "\n\n// Keyword weight depending on the number of times it appears in a page is capped at this value\n");
+        fwrite($fhandle,"$"."word_upper_bound	= ".$_word_upper_bound. ";");
+        fwrite($fhandle, "\n\n// Index numbers as well\n");
+        fwrite($fhandle,"$"."index_numbers		= ".$_index_numbers. ";");
+        fwrite($fhandle,"\n\n// if this value is set to 1, word in domain name and url path are also indexed,// so that for example the index of www.php.net returns a positive answer to query 'php' even 	// if the word is not included in the page itself.\n");
+        fwrite($fhandle,"$"."index_host		 = ".$_index_host.";\n");
+        fwrite($fhandle, "\n\n// Wether to index keywords in a meta tag \n");
+        fwrite($fhandle,"$"."index_meta_keywords = ".$_index_meta_keywords. ";");		
+        fwrite($fhandle, "\n\n// Index pdf files\n");
+        fwrite($fhandle,"$"."index_pdf	= ".$_index_pdf. ";");
+        fwrite($fhandle, "\n\n// Index doc files\n");
+        fwrite($fhandle,"$"."index_doc	= ".$_index_doc. ";");
+        fwrite($fhandle, "\n\n// Index xls files\n");
+        fwrite($fhandle,"$"."index_xls	= ".$_index_xls. ";");
+        fwrite($fhandle, "\n\n// Index ppt files\n");
+        fwrite($fhandle,"$"."index_ppt	= ".$_index_ppt. ";");
+        fwrite($fhandle, "\n\n//executable path to pdf converter\n");
+        fwrite($fhandle,"$"."pdftotext_path	= '".$_pdftotext_path	. "';");
+        fwrite($fhandle, "\n\n//executable path to doc converter\n");
+        fwrite($fhandle,"$"."catdoc_path	= '".$_catdoc_path. "';");
+        fwrite($fhandle, "\n\n//executable path to xls converter\n");
+        fwrite($fhandle,"$"."xls2csv_path	= '".$_xls2csv_path	. "';");
+        fwrite($fhandle, "\n\n//executable path to ppt converter\n");
+        fwrite($fhandle,"$"."catppt_path	= '".$_catppt_path. "';");
+        fwrite($fhandle, "\n\n// User agent string \n");
+        fwrite($fhandle,"$"."user_agent			 = '".$_user_agent. "';");
+        fwrite($fhandle, "\n\n// Minimal delay between page downloads \n");
+        fwrite($fhandle,"$"."min_delay			= ".$_min_delay. ";");
+        fwrite($fhandle, "\n\n// Use word stemming (e.g. find sites containing runs and running when searching for run) \n");
+        fwrite($fhandle,"$"."stem_words			= ".$_stem_words. ";");
+        fwrite($fhandle, "\n\n// Strip session ids (PHPSESSID, JSESSIONID, ASPSESSIONID, sid) \n");
+        fwrite($fhandle,"$"."strip_sessids			= ".$_strip_sessids. ";");
 
-		fwrite($fhandle,"\n\n\n/*********************** \nSearch settings \n***********************/");
-		fwrite($fhandle, "\n\n// default for number of results per page\n");
-		fwrite($fhandle,"$"."results_per_page	= ".$_results_per_page. ";");
-		fwrite($fhandle, "\n\n// Number of columns for categories. If you increase this, you might also want to increase the category table with in the css file\n");
-		fwrite($fhandle,"$"."cat_columns		= ".$_cat_columns. ";");
-		fwrite($fhandle, "\n\n// Can speed up searches on large database (should be 0)\n");
-		fwrite($fhandle,"$"."bound_search_result = ".$_bound_search_result. ";");
-		fwrite($fhandle, "\n\n");
-		fwrite($fhandle,"// The length of the description string queried when displaying search results. // If set to 0 (default), makes a query for the whole page text, // otherwise queries this many bytes. Can significantly speed up searching on very slow machines \n");
-		fwrite($fhandle,"$"."length_of_link_desc	= ".$_length_of_link_desc. ";");
-		fwrite($fhandle, "\n\n// Number of links shown to next pages\n");
-		fwrite($fhandle,"$"."links_to_next		 = ".$_links_to_next. ";");
-		fwrite($fhandle, "\n\n// Show meta description in results page if it exists, otherwise show an extract from the page text.\n");
-		fwrite($fhandle,"$"."show_meta_description = ".$_show_meta_description. ";");
-		fwrite($fhandle, "\n\n// Advanced query form, shows and/or buttons\n");
-		fwrite($fhandle,"$"."advanced_search	= ".$_advanced_search. ";");
-		fwrite($fhandle, "\n\n// Query scores are not shown if set to 0\n");
-		fwrite($fhandle,"$"."show_query_scores	 = ".$_show_query_scores. ";	");
-		fwrite($fhandle, "\n\n");
-		fwrite($fhandle, "\n\n // Display category list\n");
-		fwrite($fhandle,"$"."show_categories	 = ".$_show_categories. ";");
-		fwrite($fhandle, "\n\n// Length of page description given in results page\n");
-		fwrite($fhandle,"$"."desc_length		= ".$_desc_length. ";");
-		fwrite($fhandle, "\n\n// Show only the 2 most relevant links from each site (a la google)\n");
-		fwrite($fhandle,"$"."merge_site_results		= ".$_merge_site_results. ";");
-		fwrite($fhandle, "\n\n// Enable spelling suggestions (Did you mean...)\n");
-		fwrite($fhandle,"$"."did_you_mean_enabled	= ".$_did_you_mean_enabled. ";");
-		fwrite($fhandle, "\n\n// Enable Sphider Suggest \n");
-		fwrite($fhandle,"$"."suggest_enabled		= ".$_suggest_enabled. ";");		
-		fwrite($fhandle, "\n\n// Search for suggestions in query log \n");
-		fwrite($fhandle,"$"."suggest_history		= ".$_suggest_history. ";");		
-		fwrite($fhandle, "\n\n// Search for suggestions in keywords \n");
-		fwrite($fhandle,"$"."suggest_keywords		= ".$_suggest_keywords. ";");		
-		fwrite($fhandle, "\n\n// Search for suggestions in phrases \n");
-		fwrite($fhandle,"$"."suggest_phrases		= ".$_suggest_phrases. ";");		
-		fwrite($fhandle, "\n\n// Limit number of suggestions \n");
-		fwrite($fhandle,"$"."suggest_rows		= ".$_suggest_rows. ";");
-
-
-		fwrite($fhandle,"\n\n\n/*********************** \nWeights\n***********************/");
-		fwrite($fhandle, "\n\n// Relative weight of a word in the title of a webpage\n");
-		fwrite($fhandle,"$"."title_weight  = ".$_title_weight. ";");
-		fwrite($fhandle, "\n\n// Relative weight of a word in the domain name\n");
-		fwrite($fhandle,"$"."domain_weight = ".$_domain_weight. ";");
-		fwrite($fhandle, "\n\n// Relative weight of a word in the path name\n");
-		fwrite($fhandle,"$"."path_weight	= ".$_path_weight. ";");
-		fwrite($fhandle, "\n\n// Relative weight of a word in meta_keywords\n");
-		fwrite($fhandle,"$"."meta_weight	= ".$_meta_weight. ";");
+        fwrite($fhandle,"\n\n\n/*********************** \nSearch settings \n***********************/");
+        fwrite($fhandle, "\n\n// default for number of results per page\n");
+        fwrite($fhandle,"$"."results_per_page	= ".$_results_per_page. ";");
+        fwrite($fhandle, "\n\n// Number of columns for categories. If you increase this, you might also want to increase the category table with in the css file\n");
+        fwrite($fhandle,"$"."cat_columns		= ".$_cat_columns. ";");
+        fwrite($fhandle, "\n\n// Can speed up searches on large database (should be 0)\n");
+        fwrite($fhandle,"$"."bound_search_result = ".$_bound_search_result. ";");
+        fwrite($fhandle, "\n\n");
+        fwrite($fhandle,"// The length of the description string queried when displaying search results. // If set to 0 (default), makes a query for the whole page text, // otherwise queries this many bytes. Can significantly speed up searching on very slow machines \n");
+        fwrite($fhandle,"$"."length_of_link_desc	= ".$_length_of_link_desc. ";");
+        fwrite($fhandle, "\n\n// Number of links shown to next pages\n");
+        fwrite($fhandle,"$"."links_to_next		 = ".$_links_to_next. ";");
+        fwrite($fhandle, "\n\n// Show meta description in results page if it exists, otherwise show an extract from the page text.\n");
+        fwrite($fhandle,"$"."show_meta_description = ".$_show_meta_description. ";");
+        fwrite($fhandle, "\n\n// Advanced query form, shows and/or buttons\n");
+        fwrite($fhandle,"$"."advanced_search	= ".$_advanced_search. ";");
+        fwrite($fhandle, "\n\n// Query scores are not shown if set to 0\n");
+        fwrite($fhandle,"$"."show_query_scores	 = ".$_show_query_scores. ";	");
+        fwrite($fhandle, "\n\n");
+        fwrite($fhandle, "\n\n // Display category list\n");
+        fwrite($fhandle,"$"."show_categories	 = ".$_show_categories. ";");
+        fwrite($fhandle, "\n\n// Length of page description given in results page\n");
+        fwrite($fhandle,"$"."desc_length		= ".$_desc_length. ";");
+        fwrite($fhandle, "\n\n// Show only the 2 most relevant links from each site (a la google)\n");
+        fwrite($fhandle,"$"."merge_site_results		= ".$_merge_site_results. ";");
+        fwrite($fhandle, "\n\n// Enable spelling suggestions (Did you mean...)\n");
+        fwrite($fhandle,"$"."did_you_mean_enabled	= ".$_did_you_mean_enabled. ";");
+        fwrite($fhandle, "\n\n// Enable Sphider Suggest \n");
+        fwrite($fhandle,"$"."suggest_enabled		= ".$_suggest_enabled. ";");		
+        fwrite($fhandle, "\n\n// Search for suggestions in query log \n");
+        fwrite($fhandle,"$"."suggest_history		= ".$_suggest_history. ";");		
+        fwrite($fhandle, "\n\n// Search for suggestions in keywords \n");
+        fwrite($fhandle,"$"."suggest_keywords		= ".$_suggest_keywords. ";");		
+        fwrite($fhandle, "\n\n// Search for suggestions in phrases \n");
+        fwrite($fhandle,"$"."suggest_phrases		= ".$_suggest_phrases. ";");		
+        fwrite($fhandle, "\n\n// Limit number of suggestions \n");
+        fwrite($fhandle,"$"."suggest_rows		= ".$_suggest_rows. ";");
 
 
+        fwrite($fhandle,"\n\n\n/*********************** \nWeights\n***********************/");
+        fwrite($fhandle, "\n\n// Relative weight of a word in the title of a webpage\n");
+        fwrite($fhandle,"$"."title_weight  = ".$_title_weight. ";");
+        fwrite($fhandle, "\n\n// Relative weight of a word in the domain name\n");
+        fwrite($fhandle,"$"."domain_weight = ".$_domain_weight. ";");
+        fwrite($fhandle, "\n\n// Relative weight of a word in the path name\n");
+        fwrite($fhandle,"$"."path_weight	= ".$_path_weight. ";");
+        fwrite($fhandle, "\n\n// Relative weight of a word in meta_keywords\n");
+        fwrite($fhandle,"$"."meta_weight	= ".$_meta_weight. ";");
 
-		
 
 
-		fwrite($fhandle,"?>");
-		fclose($fhandle);
-	
-	}
-		//header("location: admin.php");		
+
+
+
+        fwrite($fhandle,"?>");
+        fclose($fhandle);
+
+    }
+    //header("location: admin.php");		
 } 	
 include "../settings/conf.php"; 
 ?>
@@ -289,15 +289,15 @@ include "../settings/conf.php";
 <td class="left1">
 <SELECT name="_template">
 <?php 
-	$directories = get_dir_contents($template_dir);
-	if (count($directories)>0) {
-		for ($i=0; $i<count($directories); $i++) {
-			$dir=$directories[$i];
-			?>
-				<option value="<?php print $dir;?>" <?php  if ($template == $dir) echo "selected";?>><?php print $dir;?></option>
-				<?php 
-		}
-	}
+$directories = get_dir_contents($template_dir);
+if (count($directories)>0) {
+    for ($i=0; $i<count($directories); $i++) {
+        $dir=$directories[$i];
+        ?>
+            <option value="<?php print $dir;?>" <?php  if ($template == $dir) echo "selected";?>><?php print $dir;?></option>
+            <?php 
+    }
+}
 ?>
 
 </SELECT>
@@ -537,7 +537,7 @@ show an extract from the page text.</td>
 
 <tr>
 <td class="left1">
- <input
+<input
 name="_advanced_search" type="checkbox"  value="1" id="advanced_search" <?php  if
 ($advanced_search==1) echo "checked";?>></td>
 <td>Advanced search (shows and/or) </td>

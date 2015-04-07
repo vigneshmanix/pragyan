@@ -1,10 +1,10 @@
 <?php
 if(!defined('__PRAGYAN_CMS'))
 { 
-	header($_SERVER['SERVER_PROTOCOL'].' 403 Forbidden');
-	echo "<h1>403 Forbidden<h1><h4>You are not authorized to access the page.</h4>";
-	echo '<hr/>'.$_SERVER['SERVER_SIGNATURE'];
-	exit(1);
+    header($_SERVER['SERVER_PROTOCOL'].' 403 Forbidden');
+    echo "<h1>403 Forbidden<h1><h4>You are not authorized to access the page.</h4>";
+    echo '<hr/>'.$_SERVER['SERVER_SIGNATURE'];
+    exit(1);
 }
 
 /**
@@ -182,62 +182,62 @@ function patch( $original, $patch )
     return implode( "\n", $new );
 }
 /*
-$original = 'This part of the
-document has stayed the
-same from version to
-version.  It shouldn\'t
-be shown if it doesn\'t
-change.  Otherwise, that
-would not be helping to
-compress the size of the
-changes.
+   $original = 'This part of the
+   document has stayed the
+   same from version to
+   version.  It shouldn\'t
+   be shown if it doesn\'t
+   change.  Otherwise, that
+   would not be helping to
+   compress the size of the
+   changes.
 
-This paragraph contains
-text that is outdated.
-It will be deleted in the
-near future.
+   This paragraph contains
+   text that is outdated.
+   It will be deleted in the
+   near future.
 
-It is important to spell
-check this dokument. On
-the other hand, a
-misspelled word isn\'t
-the end of the world.
-Nothing in the rest of
-this paragraph needs to
-be changed. Things can
-be added after it.';
+   It is important to spell
+   check this dokument. On
+   the other hand, a
+   misspelled word isn\'t
+   the end of the world.
+   Nothing in the rest of
+   this paragraph needs to
+   be changed. Things can
+   be added after it.';
 
-$updated = 'This is an important
-notice! It should
-therefore be located at
-the beginning of this
-document!
+   $updated = 'This is an important
+   notice! It should
+   therefore be located at
+   the beginning of this
+   document!
 
-This part of the
-document has stayed the
-same from version to
-version.  It shouldn\'t
-be shown if it doesn\'t
-change.  Otherwise, that
-would not be helping to
-compress anything.
+   This part of the
+   document has stayed the
+   same from version to
+   version.  It shouldn\'t
+   be shown if it doesn\'t
+   change.  Otherwise, that
+   would not be helping to
+   compress anything.
 
-It is important to spell
-check this document. On
-the other hand, a
-misspelled word isn\'t
-the end of the world.
-Nothing in the rest of
-this paragraph needs to
-be changed. Things can
-be added after it.
+   It is important to spell
+   check this document. On
+   the other hand, a
+   misspelled word isn\'t
+   the end of the world.
+   Nothing in the rest of
+   this paragraph needs to
+   be changed. Things can
+   be added after it.
 
-This paragraph contains
-important new additions
-to this document.';
+   This paragraph contains
+   important new additions
+   to this document.';
 
-$patch = diff( $original, $updated );
-$new = patch( $original, $patch );
-echo $patch , "\n", $new;
+   $patch = diff( $original, $updated );
+   $new = patch( $original, $patch );
+   echo $patch , "\n", $new;
 
-*/
+ */

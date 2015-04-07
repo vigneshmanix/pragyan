@@ -1,19 +1,19 @@
 <?php 
 if(!defined('__PRAGYAN_CMS'))
 { 
-	header($_SERVER['SERVER_PROTOCOL'].' 403 Forbidden');
-	echo "<h1>403 Forbidden<h1><h4>You are not authorized to access the page.</h4>";
-	echo '<hr/>'.$_SERVER['SERVER_SIGNATURE'];
-	exit(1);
+    header($_SERVER['SERVER_PROTOCOL'].' 403 Forbidden');
+    echo "<h1>403 Forbidden<h1><h4>You are not authorized to access the page.</h4>";
+    echo '<hr/>'.$_SERVER['SERVER_SIGNATURE'];
+    exit(1);
 }
 /***********************
- Sphider configuration file
-***********************/
+  Sphider configuration file
+ ***********************/
 
 global $results_per_page, $version_nr, $language, $template, $admin_email, $print_results, $tmp_dir, $keep_log, $log_dir, $log_format, $email_log, $min_words_per_page, $min_word_length, $word_upper_bound, $index_numbers, $index_host, $index_meta_keywords, $index_pdf, $index_doc, $index_xls, $index_ppt, $pdftotext_path, $catdoc_path, $xls2csv_path, $catppt_path, $user_agent, $min_delay, $stem_words, $strip_sessids, $cat_columns, $bound_search_result, $length_of_link_desc, $links_to_next, $show_meta_description, $advanced_search, $show_query_scores, $show_categories, $desc_length, $merge_site_results, $did_you_mean_enabled, $suggest_enabled, $suggest_history, $suggest_keywords, $suggest_phrases, $suggest_rows, $title_weight, $domain_weight, $path_weight, $meta_weight;
 /*********************** 
-General settings 
-***********************/
+  General settings 
+ ***********************/
 
 // Sphider version 
 $version_nr			= '1.3.5';
@@ -35,8 +35,8 @@ $tmp_dir	= 'tmp';
 
 
 /*********************** 
-Logging settings 
-***********************/
+  Logging settings 
+ ***********************/
 
 // Should log files be kept
 $keep_log			= 0;
@@ -52,8 +52,8 @@ $email_log			= 0;
 
 
 /*********************** 
-Spider settings 
-***********************/
+  Spider settings 
+ ***********************/
 
 // Min words per page required for indexing 
 $min_words_per_page = 10;
@@ -112,8 +112,8 @@ $strip_sessids			= 1;
 
 
 /*********************** 
-Search settings 
-***********************/
+  Search settings 
+ ***********************/
 
 // default for number of results per page
 
@@ -142,7 +142,7 @@ $show_query_scores	 = 1;
 
 
 
- // Display category list
+// Display category list
 $show_categories	 = 1;
 
 // Length of page description given in results page
@@ -171,8 +171,8 @@ $suggest_rows		= 10;
 
 
 /*********************** 
-Weights
-***********************/
+  Weights
+ ***********************/
 
 // Relative weight of a word in the title of a webpage
 $title_weight  = 20;

@@ -1,21 +1,21 @@
 <?php
 function retglobalPmcId(){
-  $globalFormPmcId = 0;
-  return $globalFormPmcId;
-  }
+    $globalFormPmcId = 0;
+    return $globalFormPmcId;
+}
 
 function retPnoneNoFormId(){
-  $phNoFormId = 6;
-  return $phNoFormId;
+    $phNoFormId = 6;
+    return $phNoFormId;
 }
 
 function retCollFormId(){
-  $collFormId = 10;
-  return $collFormId;
+    $collFormId = 10;
+    return $collFormId;
 }
 
 function retOtherCollFormId(){
-  $otherCollFormId = 12;
-  return $otherCollFormId;
+    $otherCollFormId = 12;
+    return $otherCollFormId;
 }
 ?>

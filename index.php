@@ -113,9 +113,9 @@ $onlineSiteUrl = "http://" . $_SERVER['HTTP_HOST'] . substr($scriptname,0,stripo
 ///If config.inc.php doesn't exists, ADMIN_USERID won't be defined, so assume CMS is not installed.
 if(!defined("ADMIN_USERID") )
 {
-	echo "Welcome to Pragyan CMS v3.0. <a href='./INSTALL/'>Click Here</a> to goto installation page.<br/><br/>
-	<b>NOTE:</b>If you're not using the <a href='http://sourceforge.net/projects/pragyan'>official package</a> of the Pragyan CMS or you're installing for the second time, then please make sure that the 'RewriteEngine' property is set to 'Off' in the .htaccess file present in the root folder of Pragyan for the above link to work correctly.";
-	exit();
+    echo "Welcome to Pragyan CMS v3.0. <a href='./INSTALL/'>Click Here</a> to goto installation page.<br/><br/>
+        <b>NOTE:</b>If you're not using the <a href='http://sourceforge.net/projects/pragyan'>official package</a> of the Pragyan CMS or you're installing for the second time, then please make sure that the 'RewriteEngine' property is set to 'Off' in the .htaccess file present in the root folder of Pragyan for the above link to work correctly.";
+    exit();
 }
 
 ///Contains functions which are common to many tasks and very frequently used.
@@ -140,35 +140,35 @@ if($cookieSupported==true)	session_start();
 $userId=firstTimeGetUserId();
 ///Case 1 : request a page
 if(isset($_GET['page']))
-	$pageFullPath = strtolower($_GET['page']);
+$pageFullPath = strtolower($_GET['page']);
 ///Case 2 : request for a user profile page
 else if(isset($_GET['user'])) {
-	$publicPageRequest = true;
-	$userProfileId = $_GET['user'];
-	//This is just to prevent parsing a NULL url when someone misplaces the code for User profile parser
-	$pageFullPath = "home";
+    $publicPageRequest = true;
+    $userProfileId = $_GET['user'];
+    //This is just to prevent parsing a NULL url when someone misplaces the code for User profile parser
+    $pageFullPath = "home";
 }
 else $pageFullPath = "home";
 
 ///Retrieve the action, default is "view"
 if(isset($_GET['action']))
-	$action = strtolower(escape($_GET['action']));
+$action = strtolower(escape($_GET['action']));
 else	$action = "view";
 
 ///Just to check if server is alive, an alternative of Ping
 if ($action == 'keepalive') 
-	die("OK: " . rand());
+die("OK: " . rand());
 
 ///Get all the global settings from the database and convert into variables
 $globals=getGlobalSettings();
 foreach($globals as $var=>$val) 
-	$$var=$val;
+    $$var=$val;
 
 
-if($openid_enabled=='true'){                                                                                                                                                 
-  set_include_path('cms/openid/');
-  require_once 'cms/openid/class.dopeopenid.php';
-}
+    if($openid_enabled=='true'){                                                                                                                                                 
+        set_include_path('cms/openid/');
+        require_once 'cms/openid/class.dopeopenid.php';
+    }
 ///Check the status of URL rewriting taken from database
 $rewriteEngineEnabled=$url_rewrite;
 
@@ -216,30 +216,30 @@ require_once($sourceFolder."/login.lib.php");
 
 ///Check if request is made
 if($publicPageRequest) {
-	require_once($sourceFolder."/userprofile.lib.php");
-	define("TEMPLATE", getPageTemplate(0));
-	$TITLE = CMS_TITLE . " | User : " . ucfirst(getUserName($userProfileId));
-	$CONTENT = generatePublicProfile($userProfileId,$userId);
-	$ACTIONBARPAGE = getActionbarPage($userId, $pageId);
-	$BREADCRUMB = breadcrumbs(array(0=>0),"&nbsp;»&nbsp;");
-	$MENUBAR = getMenu($userId, $pageIdArray);
-	$SEARCHBAR = getSearchbar($userId, $pageId);
-	$PAGEKEYWORDS = getPagetags($pageId);
-	templateReplace($TITLE,$MENUBAR,$ACTIONBARMODULE,$ACTIONBARPAGE,$BREADCRUMB,$SEARCHBAR,$PAGEKEYWORDS,$INHERITEDINFO,$CONTENT,$FOOTER,$DEBUGINFO,$ERRORSTRING,$WARNINGSTRING,$INFOSTRING,$STARTSCRIPTS,$LOGINFORM);
-	exit(1);
+    require_once($sourceFolder."/userprofile.lib.php");
+    define("TEMPLATE", getPageTemplate(0));
+    $TITLE = CMS_TITLE . " | User : " . ucfirst(getUserName($userProfileId));
+    $CONTENT = generatePublicProfile($userProfileId,$userId);
+    $ACTIONBARPAGE = getActionbarPage($userId, $pageId);
+    $BREADCRUMB = breadcrumbs(array(0=>0),"&nbsp;»&nbsp;");
+    $MENUBAR = getMenu($userId, $pageIdArray);
+    $SEARCHBAR = getSearchbar($userId, $pageId);
+    $PAGEKEYWORDS = getPagetags($pageId);
+    templateReplace($TITLE,$MENUBAR,$ACTIONBARMODULE,$ACTIONBARPAGE,$BREADCRUMB,$SEARCHBAR,$PAGEKEYWORDS,$INHERITEDINFO,$CONTENT,$FOOTER,$DEBUGINFO,$ERRORSTRING,$WARNINGSTRING,$INFOSTRING,$STARTSCRIPTS,$LOGINFORM);
+    exit(1);
 }
 
 ///The URL may contain some harmful GET variables, so filter and block such URLs.
 if(URLSecurityCheck($_GET))
 {
-	define("TEMPLATE", getPageTemplate(0));
-	$pageId = parseUrlReal("home", $pageIdArray);
-	$TITLE = CMS_TITLE;
-	$MENUBAR = '';
-	$CONTENT = "The requested URL was found to have invalid syntax and cannot be processed for security reasons.<br/> If you believe its a". 				"correct URL, please contact the administrator immediately..<br />$_SERVER[SERVER_SIGNATURE]".
-			"<br /><br />Click <a href='".$urlRequestRoot."'>here </a> to return to the home page";
-	templateReplace($TITLE,$MENUBAR,$ACTIONBARMODULE,$ACTIONBARPAGE,$BREADCRUMB,$SEARCHBAR,$PAGEKEYWORDS,$INHERITEDINFO,$CONTENT,$FOOTER,$DEBUGINFO,$ERRORSTRING,$WARNINGSTRING,$INFOSTRING,$STARTSCRIPTS,$LOGINFORM);
-	exit();
+    define("TEMPLATE", getPageTemplate(0));
+    $pageId = parseUrlReal("home", $pageIdArray);
+    $TITLE = CMS_TITLE;
+    $MENUBAR = '';
+    $CONTENT = "The requested URL was found to have invalid syntax and cannot be processed for security reasons.<br/> If you believe its a". 				"correct URL, please contact the administrator immediately..<br />$_SERVER[SERVER_SIGNATURE]".
+        "<br /><br />Click <a href='".$urlRequestRoot."'>here </a> to return to the home page";
+    templateReplace($TITLE,$MENUBAR,$ACTIONBARMODULE,$ACTIONBARPAGE,$BREADCRUMB,$SEARCHBAR,$PAGEKEYWORDS,$INHERITEDINFO,$CONTENT,$FOOTER,$DEBUGINFO,$ERRORSTRING,$WARNINGSTRING,$INFOSTRING,$STARTSCRIPTS,$LOGINFORM);
+    exit();
 }
 
 ///Parse the URL and retrieve the PageID of the request page if its valid
@@ -247,14 +247,14 @@ $pageId = parseUrlReal($pageFullPath, $pageIdArray);
 
 ///Means that the requested URL is not valid.
 if ($pageId === false) { 
-	define("TEMPLATE", getPageTemplate(0));
-	$pageId = parseUrlReal("home", $pageIdArray);
-	$TITLE = CMS_TITLE;
-	$MENUBAR = '';
-	$CONTENT = "The requested URL was not found on this server.<br />$_SERVER[SERVER_SIGNATURE]".
-		"<br /><br />Click <a href='".$urlRequestRoot."'>here </a> to return to the home page";
-	templateReplace($TITLE,$MENUBAR,$ACTIONBARMODULE,$ACTIONBARPAGE,$BREADCRUMB,$SEARCHBAR,$PAGEKEYWORDS,$INHERITEDINFO,$CONTENT,$FOOTER,$DEBUGINFO,$ERRORSTRING,$WARNINGSTRING,$INFOSTRING,$STARTSCRIPTS,$LOGINFORM);
-	exit();
+    define("TEMPLATE", getPageTemplate(0));
+    $pageId = parseUrlReal("home", $pageIdArray);
+    $TITLE = CMS_TITLE;
+    $MENUBAR = '';
+    $CONTENT = "The requested URL was not found on this server.<br />$_SERVER[SERVER_SIGNATURE]".
+        "<br /><br />Click <a href='".$urlRequestRoot."'>here </a> to return to the home page";
+    templateReplace($TITLE,$MENUBAR,$ACTIONBARMODULE,$ACTIONBARPAGE,$BREADCRUMB,$SEARCHBAR,$PAGEKEYWORDS,$INHERITEDINFO,$CONTENT,$FOOTER,$DEBUGINFO,$ERRORSTRING,$WARNINGSTRING,$INFOSTRING,$STARTSCRIPTS,$LOGINFORM);
+    exit();
 }
 
 ///If it reaches here, means the page requested is valid. Log the information for future use.
@@ -262,12 +262,12 @@ logInfo (getUserEmail($userId),$userId, $pageId, $pageFullPath, getPageModule($p
 
 ///The URL points to a file. Download permissions for the file are handled inside the download() function in download.lib.php
 if(isset($_GET['fileget'])) {
-	require_once($sourceFolder."/download.lib.php");
-	$action="";
-	if(isset($_GET['action']))
-	 $action=$_GET['action'];
-	download($pageId,$userId,$_GET['fileget'],$action);
-	exit();
+    require_once($sourceFolder."/download.lib.php");
+    $action="";
+    if(isset($_GET['action']))
+        $action=$_GET['action'];
+    download($pageId,$userId,$_GET['fileget'],$action);
+    exit();
 }
 
 ///Check whether the user has the permission to use that action on the requested page.
@@ -278,35 +278,35 @@ define("TEMPLATE", getPageTemplate($pageId));
 
 ///Gets the page title of the requested page
 if (getTitle($pageId, $action, $TITLE))
-	$TITLE = CMS_TITLE . " - $TITLE";
-else
-	$TITLE = CMS_TITLE;
+    $TITLE = CMS_TITLE . " - $TITLE";
+    else
+    $TITLE = CMS_TITLE;
 
-///Gets the content according to the user's permissions
-$CONTENT = getContent($pageId, $action, $userId, $permission);
+    ///Gets the content according to the user's permissions
+    $CONTENT = getContent($pageId, $action, $userId, $permission);
 
-///Gets the inherited code (if any) from the parent page
-$INHERITEDINFO = inheritedinfo($pageIdArray);
+    ///Gets the inherited code (if any) from the parent page
+    $INHERITEDINFO = inheritedinfo($pageIdArray);
 
-///Gets the breadcrumb
-$BREADCRUMB = breadcrumbs($pageIdArray,"&nbsp;»&nbsp;");
+    ///Gets the breadcrumb
+    $BREADCRUMB = breadcrumbs($pageIdArray,"&nbsp;»&nbsp;");
 
-//Gets the searchbar
-$SEARCHBAR = getSearchbar($userId, $pageId);
+    //Gets the searchbar
+    $SEARCHBAR = getSearchbar($userId, $pageId);
 
-//Gets the page-speciit keywords
-$PAGEKEYWORDS = getPagetags($pageId);
+    //Gets the page-speciit keywords
+    $PAGEKEYWORDS = getPagetags($pageId);
 
-///Gets the menubar consisting of the child pages from the current location upto a certain depth
-$MENUBAR = getMenu($userId, $pageIdArray); 
+    ///Gets the menubar consisting of the child pages from the current location upto a certain depth
+    $MENUBAR = getMenu($userId, $pageIdArray); 
 
-///The Login form to be displayed from login.lib.php
+    ///The Login form to be displayed from login.lib.php
 if($userId == 0)
-	$LOGINFORM = loginForm();
-else
+    $LOGINFORM = loginForm();
+    else
 {
-	$userNameFromId = getUserName($userId);
-	$LOGINFORM = "Welcome {$userNameFromId}.";
+    $userNameFromId = getUserName($userId);
+    $LOGINFORM = "Welcome {$userNameFromId}.";
 }
 
 ///Gets the list of allowed actions for the current page
@@ -320,40 +320,40 @@ populateWidgetVariables($pageId);
 
 ///If its disabled, then all the links in the generated page are converted into non-pretty URLs using regex
 if($rewriteEngineEnabled=='false') {
-	$TITLE = convertUri($TITLE);
-	$MENUBAR = convertUri($MENUBAR);
-	$CONTENT = convertUri($CONTENT);
-	$INHERITEDINFO = convertUri($INHERITEDINFO);
-	$BREADCRUMB = convertUri($BREADCRUMB);
-	$ACTIONBARPAGE = convertUri($ACTIONBARPAGE);
-	$ACTIONBARMODULE = convertUri($ACTIONBARMODULE);
-	$INFOSTRING = convertUri($INFOSTRING);
-	$ERRORSTRING = convertUri($ERRORSTRING);
-	$WARNINGSTRING = convertUri($WARNINGSTRING);
-	$LOGINFORM = convertUri($LOGINFORM);
+    $TITLE = convertUri($TITLE);
+    $MENUBAR = convertUri($MENUBAR);
+    $CONTENT = convertUri($CONTENT);
+    $INHERITEDINFO = convertUri($INHERITEDINFO);
+    $BREADCRUMB = convertUri($BREADCRUMB);
+    $ACTIONBARPAGE = convertUri($ACTIONBARPAGE);
+    $ACTIONBARMODULE = convertUri($ACTIONBARMODULE);
+    $INFOSTRING = convertUri($INFOSTRING);
+    $ERRORSTRING = convertUri($ERRORSTRING);
+    $WARNINGSTRING = convertUri($WARNINGSTRING);
+    $LOGINFORM = convertUri($LOGINFORM);
 }
 
 ///Some extra debugging information if debugSet is enabled
 if($debugSet == "on") {
-	$DEBUGINFO .= "Page Full text path : ".$pageFullPath."<br /><br />\n";
-	$DEBUGINFO .= "UID : ".getUserId()."<br /><br />\n";
-	$DEBUGINFO .= "GIDS : ".arraytostring(getGroupIds($userId))."<br /><br />\n";
-	$DEBUGINFO .= "Action : ".$action."<br /><br />\n";
-	$DEBUGINFO .= "Get Vars : ".arraytostring($_GET)."<br /><br />\n";
-	$DEBUGINFO .= "Page Id : ".$pageId."<br /><br />\n";
-	$DEBUGINFO .= "Page id path : ".arraytostring($pageIdArray)."\n<br /><br />";
-	$DEBUGINFO .= "Title : ".$TITLE."\n<br /><br />";
-	$DEBUGINFO .= "SERVER info : ".arraytostring($_SERVER)."\n<br /><br />";
-	$DEBUGINFO .= "POST info : ".arraytostring($_POST)."\n<br /><br />";
-	$DEBUGINFO .= "FILES info : ".arraytostring($_FILES)."\n<br /><br />";
-	$DEBUGINFO .= "SESSION info : ".arraytostring($_SESSION)."\n<br /><br />";
-	$DEBUGINFO .= "STARTSCRIPTS : ".$STARTSCRIPTS."\n<br/><br/>";
-	if($DEBUGINFO!="")	displayinfo($DEBUGINFO);
+    $DEBUGINFO .= "Page Full text path : ".$pageFullPath."<br /><br />\n";
+    $DEBUGINFO .= "UID : ".getUserId()."<br /><br />\n";
+    $DEBUGINFO .= "GIDS : ".arraytostring(getGroupIds($userId))."<br /><br />\n";
+    $DEBUGINFO .= "Action : ".$action."<br /><br />\n";
+    $DEBUGINFO .= "Get Vars : ".arraytostring($_GET)."<br /><br />\n";
+    $DEBUGINFO .= "Page Id : ".$pageId."<br /><br />\n";
+    $DEBUGINFO .= "Page id path : ".arraytostring($pageIdArray)."\n<br /><br />";
+    $DEBUGINFO .= "Title : ".$TITLE."\n<br /><br />";
+    $DEBUGINFO .= "SERVER info : ".arraytostring($_SERVER)."\n<br /><br />";
+    $DEBUGINFO .= "POST info : ".arraytostring($_POST)."\n<br /><br />";
+    $DEBUGINFO .= "FILES info : ".arraytostring($_FILES)."\n<br /><br />";
+    $DEBUGINFO .= "SESSION info : ".arraytostring($_SESSION)."\n<br /><br />";
+    $DEBUGINFO .= "STARTSCRIPTS : ".$STARTSCRIPTS."\n<br/><br/>";
+    if($DEBUGINFO!="")	displayinfo($DEBUGINFO);
 }
 
 ///Used to check in subsequent requests if cookies are supported or not
 setcookie("cookie_support", "enabled", 0, "/"); 
-	
+
 ///Apply the template on the generated content and display the page
 templateReplace($TITLE,$MENUBAR,$ACTIONBARMODULE,$ACTIONBARPAGE,$BREADCRUMB,$SEARCHBAR,$PAGEKEYWORDS,$INHERITEDINFO,$CONTENT,$FOOTER,$DEBUGINFO,$ERRORSTRING,$WARNINGSTRING,$INFOSTRING,$STARTSCRIPTS,$LOGINFORM);
 
@@ -362,48 +362,48 @@ exit();
 
 /** Additional notes :
 
-authenticate.lib.php -> Find out who requested it
-	output: one int -> uid
+  authenticate.lib.php -> Find out who requested it
+output: one int -> uid
 
 parseurl.lib.php -> Find out the page id and action requested
-	input:	url
- 	output : pageid, action, actionparameters (variables passed as parameters for the action)
+input:	url
+output : pageid, action, actionparameters (variables passed as parameters for the action)
 
 permission.lib.php -> Find out if he has the permission of the particular action on that page
-	input : pageid, uid, action
-	output : true, false
+input : pageid, uid, action
+output : true, false
 
 content.lib.php -> Generate the output of the page -> has nothing to do with the uid.
-	The only inputs will be -> permission output, pageid, action, parameters for action (might include uid)
-	outputs : 	javascript to be run on page load
- 				page content
-				bread crumbs -> breadcrumbs.lib.php
+The only inputs will be -> permission output, pageid, action, parameters for action (might include uid)
+outputs : 	javascript to be run on page load
+page content
+bread crumbs -> breadcrumbs.lib.php
 
 breadcrumbs.lib.php
-	input: pageid
-	output: div containing breadcrumbs
+input: pageid
+output: div containing breadcrumbs
 
 header.lib.php
-	input : pageid
-	output: header div
+input : pageid
+output: header div
 
 menu.lib.php : input : uid, pageid
-	this in turn will use
-		menuitems.lib.php : input : uid, pageid : output: pageid's children
-	output: divs for the menu
+this in turn will use
+menuitems.lib.php : input : uid, pageid : output: pageid's children
+output: divs for the menu
 
 right sidebar will be generated through template only
 
 Types of outputs :
- Both menu bar, page content, along with template.
- Menu bar content
- Page content. (that comes from modules)
+Both menu bar, page content, along with template.
+Menu bar content
+Page content. (that comes from modules)
 
 
 Constants :
 uids : unauthenticated -> 0, loggedin -> his own uid
 gids : Groups available by default (to which permissions can be given) - unauthenticated users -> 0, logged in users -> 1
-*/
+ */
 
 
 

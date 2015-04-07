@@ -71,7 +71,7 @@ class Services_Yadis_Manager {
      * @access private
      */
     function Services_Yadis_Manager($starting_url, $yadis_url,
-                                    $services, $session_key)
+            $services, $session_key)
     {
         // The URL that was used to initiate the Yadis protocol
         $this->starting_url = $starting_url;
@@ -178,7 +178,7 @@ class Services_Yadis_Discovery {
      * suffix override.
      */
     function Services_Yadis_Discovery(&$session, $url,
-                                      $session_key_suffix = null)
+            $session_key_suffix = null)
     {
         /// Initialize a discovery object
         $this->session =& $session;
@@ -199,12 +199,12 @@ class Services_Yadis_Discovery {
     {
         $manager = $this->getManager();
         if ((!$manager) ||
-            $manager->stale) {
+                $manager->stale) {
             $this->destroyManager();
             $http_response = array();
 
             $services = call_user_func($discover_cb, $this->url,
-                                       $fetcher);
+                    $fetcher);
 
             $manager = $this->createManager($services, $this->url);
         }
@@ -283,7 +283,7 @@ class Services_Yadis_Discovery {
         }
 
         $manager = new Services_Yadis_Manager($this->url, $yadis_url,
-                                              $services, $key);
+                $services, $key);
         $this->session->set($this->session_key, serialize($manager));
         return $manager;
     }

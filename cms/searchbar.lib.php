@@ -51,36 +51,36 @@ function getSearchbar($userId, $pageId) {
     }
     $searchbar=<<<SEARCHSCRIPT
         <script> 
-            function showResult(searchstr) {
-                if (searchstr.length==0) { 
-                    document.getElementById("tagSuggestions").innerHTML="";
-                    document.getElementById("tagSuggestions").style.border="0px";
-                    return;
-                }
-                if (window.XMLHttpRequest) {
-                    // code for IE7+, Firefox, Chrome, Opera, Safari
-                    xmlhttp=new XMLHttpRequest();
-                }else {  // code for IE6, IE5
-                    xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
-                }
-                xmlhttp.onreadystatechange=function() {
-                    if (xmlhttp.readyState==4 && xmlhttp.status==200) {
-                        if(xmlhttp.responseText != "") {
-                            console.log(xmlhttp.responseText);
-                            document.getElementById("tagSuggestions").innerHTML=xmlhttp.responseText;
-                            document.getElementById("tagSuggestions").style.border="1px solid #A5ACB2";
-                        }
-                        else {
-                            document.getElementById("tagSuggestions").innerHTML="";
-                            document.getElementById("tagSuggestions").style.border="0px";
-                        }
+        function showResult(searchstr) {
+            if (searchstr.length==0) { 
+                document.getElementById("tagSuggestions").innerHTML="";
+                document.getElementById("tagSuggestions").style.border="0px";
+                return;
+            }
+            if (window.XMLHttpRequest) {
+                // code for IE7+, Firefox, Chrome, Opera, Safari
+                xmlhttp=new XMLHttpRequest();
+            }else {  // code for IE6, IE5
+                xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+            }
+            xmlhttp.onreadystatechange=function() {
+                if (xmlhttp.readyState==4 && xmlhttp.status==200) {
+                    if(xmlhttp.responseText != "") {
+                        console.log(xmlhttp.responseText);
+                        document.getElementById("tagSuggestions").innerHTML=xmlhttp.responseText;
+                        document.getElementById("tagSuggestions").style.border="1px solid #A5ACB2";
+                    }
+                    else {
+                        document.getElementById("tagSuggestions").innerHTML="";
+                        document.getElementById("tagSuggestions").style.border="0px";
                     }
                 }
-                xmlhttp.open("GET","./&searchbar=1&searchContents="+searchstr,true);
-                xmlhttp.send();
             }
-        </script>
-SEARCHSCRIPT;
+            xmlhttp.open("GET","./&searchbar=1&searchContents="+searchstr,true);
+            xmlhttp.send();
+        }
+    </script>
+        SEARCHSCRIPT;
     $searchbar.="<div id='cms-searchbar'>";
     $searchbar.="<input type='text' size='30' onkeyup='showResult(this.value)'>";
     $searchbar.="<div id='tagSuggestions'></div>";

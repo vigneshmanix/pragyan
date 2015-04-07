@@ -41,7 +41,7 @@ class Services_Yadis_ParseHTML {
      * @access private
      */
     var $_removed_re =
-           "<!--.*?-->|<!\[CDATA\[.*?\]\]>|<script\b(?!:)[^>]*>.*?<\/script>";
+        "<!--.*?-->|<!\[CDATA\[.*?\]\]>|<script\b(?!:)[^>]*>.*?<\/script>";
 
     /**
      * @access private
@@ -51,26 +51,26 @@ class Services_Yadis_ParseHTML {
     function Services_Yadis_ParseHTML()
     {
         $this->_meta_find = sprintf("/<meta\b(?!:)([^>]*)(?!<)>/%s",
-                                    $this->_re_flags);
+                $this->_re_flags);
 
         $this->_removed_re = sprintf("/%s/%s",
-                                     $this->_removed_re,
-                                     $this->_re_flags);
+                $this->_removed_re,
+                $this->_re_flags);
 
         $this->_attr_find = sprintf("/%s/%s",
-                                    $this->_attr_find,
-                                    $this->_re_flags);
+                $this->_attr_find,
+                $this->_re_flags);
 
         $this->_entity_replacements = array(
-                                            'amp' => '&',
-                                            'lt' => '<',
-                                            'gt' => '>',
-                                            'quot' => '"'
-                                            );
+                'amp' => '&',
+                'lt' => '<',
+                'gt' => '>',
+                'quot' => '"'
+                );
 
         $this->_ent_replace =
             sprintf("&(%s);", implode("|",
-                                      $this->_entity_replacements));
+                        $this->_entity_replacements));
     }
 
     /**
@@ -174,14 +174,14 @@ class Services_Yadis_ParseHTML {
     function getMetaTags($html_string)
     {
         $stripped = preg_replace($this->_removed_re,
-                                 "",
-                                 $html_string);
+                "",
+                $html_string);
 
         // Look for the closing body tag.
         $body_closer = sprintf($this->_close_tag_expr, 'body');
         $body_matches = array();
         preg_match($body_closer, $html_string, $body_matches,
-                   PREG_OFFSET_CAPTURE);
+                PREG_OFFSET_CAPTURE);
         if ($body_matches) {
             $html_string = substr($html_string, 0, $body_matches[0][1]);
         }
@@ -217,7 +217,7 @@ class Services_Yadis_ParseHTML {
         $link_matches = array();
 
         if (!preg_match_all($this->_meta_find, $head_matches[0],
-                            $link_matches)) {
+                    $link_matches)) {
             return array();
         }
 
@@ -228,7 +228,7 @@ class Services_Yadis_ParseHTML {
             foreach ($attr_matches[0] as $index => $full_match) {
                 $name = $attr_matches[1][$index];
                 $value = $this->replaceEntities(
-                              $this->removeQuotes($attr_matches[2][$index]));
+                        $this->removeQuotes($attr_matches[2][$index]));
 
                 $link_attrs[strtolower($name)] = $value;
             }
@@ -255,9 +255,9 @@ class Services_Yadis_ParseHTML {
         if ($meta_tags) {
             foreach ($meta_tags as $tag) {
                 if (array_key_exists('http-equiv', $tag) &&
-                    (in_array(strtolower($tag['http-equiv']),
-                              array('x-xrds-location', 'x-yadis-location'))) &&
-                    array_key_exists('content', $tag)) {
+                        (in_array(strtolower($tag['http-equiv']),
+                                  array('x-xrds-location', 'x-yadis-location'))) &&
+                        array_key_exists('content', $tag)) {
                     return $tag['content'];
                 }
             }

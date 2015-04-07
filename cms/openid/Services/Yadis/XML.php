@@ -146,7 +146,7 @@ class Services_Yadis_domxml extends Services_Yadis_XMLParser {
     {
         $this->xml = $xml_string;
         $this->doc = @domxml_open_mem($xml_string, DOMXML_LOAD_PARSING,
-                                      $this->errors);
+                $this->errors);
 
         if (!$this->doc) {
             return false;
@@ -307,9 +307,9 @@ function Services_Yadis_setDefaultParser(&$parser)
 }
 
 $__Services_Yadis_xml_extensions = array(
-    'dom' => 'Services_Yadis_dom',
-    'domxml' => 'Services_Yadis_domxml'
-    );
+        'dom' => 'Services_Yadis_dom',
+        'domxml' => 'Services_Yadis_domxml'
+        );
 
 /**
  * Returns an instance of a Services_Yadis_XMLParser subclass based on
@@ -320,7 +320,7 @@ $__Services_Yadis_xml_extensions = array(
 function &Services_Yadis_getXMLParser()
 {
     global $__Services_Yadis_defaultParser,
-        $__Services_Yadis_xml_extensions;
+           $__Services_Yadis_xml_extensions;
 
     if ($__Services_Yadis_defaultParser) {
         return $__Services_Yadis_defaultParser;
@@ -331,7 +331,7 @@ function &Services_Yadis_getXMLParser()
     // Return a wrapper for the resident implementation, if any.
     foreach ($__Services_Yadis_xml_extensions as $name => $cls) {
         if (extension_loaded($name) ||
-            @dl($name . '.so')) {
+                @dl($name . '.so')) {
             // First create a dummy variable because PHP doesn't let
             // you return things by reference unless they're
             // variables.  Feh.

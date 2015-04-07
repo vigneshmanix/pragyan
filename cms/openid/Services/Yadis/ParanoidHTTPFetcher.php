@@ -34,7 +34,7 @@ class Services_Yadis_ParanoidHTTPFetcher extends Services_Yadis_HTTPFetcher {
     {
         if (!Services_Yadis_CURL_PRESENT) {
             trigger_error("Cannot use this class; CURL extension not found",
-                          E_USER_ERROR);
+                    E_USER_ERROR);
         }
 
         $this->timeout = $timeout;
@@ -95,14 +95,14 @@ class Services_Yadis_ParanoidHTTPFetcher extends Services_Yadis_HTTPFetcher {
 
             if (!$this->allowedURL($url)) {
                 trigger_error(sprintf("Fetching URL not allowed: %s", $url),
-                              E_USER_WARNING);
+                        E_USER_WARNING);
                 return null;
             }
 
             curl_setopt($c, CURLOPT_WRITEFUNCTION,
-                        array(&$this, "_writeData"));
+                    array(&$this, "_writeData"));
             curl_setopt($c, CURLOPT_HEADERFUNCTION,
-                        array(&$this, "_writeHeader"));
+                    array(&$this, "_writeHeader"));
 
             if ($extra_headers) {
                 curl_setopt($c, CURLOPT_HTTPHEADER, $extra_headers);
@@ -137,14 +137,14 @@ class Services_Yadis_ParanoidHTTPFetcher extends Services_Yadis_HTTPFetcher {
                 }
 
                 return new Services_Yadis_HTTPResponse($url, $code,
-                                                       $new_headers, $body);
+                        $new_headers, $body);
             }
 
             $off = $stop - time();
         }
 
         trigger_error(sprintf("Timed out fetching: %s", $url),
-                      E_USER_WARNING);
+                E_USER_WARNING);
 
         return null;
     }
